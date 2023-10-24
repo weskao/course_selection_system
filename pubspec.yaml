@@ -52,7 +52,9 @@ dependencies:
 
   # Path
   path_provider: ^2.0.15
-
+  
+  scroll_to_index: ^3.0.1
+  
 dev_dependencies:
   mockito: ^5.4.2
   flutter_test:

@@ -29,7 +29,7 @@ class PrimaryPage extends StatelessWidget {
     this.padding,
     this.useDefaultArrowBackIcon = true,
     this.titleFontWeight,
-    this.useTopWidgetFillRemainingSpace = false,
+    this.useTopWidgetFillRemainingSpace = true,
     this.appBarHeight,
   });
 
@@ -49,12 +49,11 @@ class PrimaryPage extends StatelessWidget {
           : null,
       body: SafeArea(
         child: Container(
-          padding: padding,
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               useTopWidgetFillRemainingSpace ? Expanded(child: topWidget) : topWidget,
-              if (fillRemainingSpace && !useTopWidgetFillRemainingSpace) const Spacer(),
             ],
           ),
         ),

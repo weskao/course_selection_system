@@ -1,4 +1,4 @@
-import 'package:course_selection_system/src/presentation/widgets/PrimaryPage.dart';
+import 'package:course_selection_system/src/presentation/views/instructor_list/InstructorListPage.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatelessWidget {
@@ -6,9 +6,6 @@ class InitialPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PrimaryPage(
-      title: "講師清單",
-      topWidget: Container(),
-    );
+    return const InstructorListPage();
   }
 }
