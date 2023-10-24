@@ -58,7 +58,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               )
             : const SizedBox.shrink(),
-        centerTitle: true,
+        centerTitle: false,
         title: middle != null
             ? SizedBox(
                 width: 300,
