@@ -1,4 +1,4 @@
-import 'package:course_selection_system/PrimaryPage.dart';
+import 'package:course_selection_system/src/presentation/widgets/PrimaryPage.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatelessWidget {
