@@ -96,6 +96,7 @@ class ToggleList extends StatefulWidget {
   final EdgeInsets viewPadding;
 
   final BoxDecoration? itemBorderDecoration;
+  final EdgeInsetsGeometry? itemPadding;
 
   /// Constructs a toggle list, that holds [ToggleListItem]s.
   ///
@@ -108,7 +109,8 @@ class ToggleList extends StatefulWidget {
     this.curve = Curves.easeIn,
     this.divider = const SizedBox(height: 20),
     this.flipTrailingOnToggle = true,
-    this.innerPadding = const EdgeInsets.symmetric(horizontal: 8),
+    this.innerPadding = const EdgeInsets.all(0),
+    this.itemPadding = const EdgeInsets.all(0),
     this.toggleAnimationDuration = const Duration(milliseconds: 500),
     this.sectionsLeftExpanded = Sections.last,
     this.scrollDirection = Axis.vertical,
@@ -171,6 +173,7 @@ class _ToggleListState extends State<ToggleList> {
           separatorBuilder: (context, index) => widget.divider,
           itemBuilder: (context, index) {
             return Container(
+              padding: widget.itemPadding,
               decoration: widget.itemBorderDecoration,
               child: ToggleListData(
                 child: widget.children[index],

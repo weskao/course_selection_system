@@ -18,6 +18,7 @@ class InstructorListPage extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(3),
         ),
+        itemPadding: const EdgeInsets.all(10),
         trailing: const Icon(Icons.add),
         // trailing: const Icon(Icons.minimize),
         children: [
