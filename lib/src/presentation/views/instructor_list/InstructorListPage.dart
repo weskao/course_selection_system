@@ -16,11 +16,11 @@ class InstructorListPage extends StatelessWidget {
         itemBorderDecoration: BoxDecoration(
           border: Border.all(
             color: Colors.black,
-            width: 1.0,
+            width: 1,
           ),
-          borderRadius: BorderRadius.circular(3),
+          borderRadius: BorderRadius.circular(3.r),
         ),
-        itemPadding: const EdgeInsets.all(10),
+        itemPadding: EdgeInsets.all(10.r),
         trailing: const Icon(Icons.add),
         // trailing: const Icon(Icons.minimize),
         children: [
@@ -31,22 +31,22 @@ class InstructorListPage extends StatelessWidget {
                 ClipOval(
                   child: Assets.images.defaultAvatar.defaultAvatar1.image(width: 40.r, height: 40.r),
                 ),
-                SizedBox(width: 10),
-                const Column(
+                SizedBox(width: 10.r),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Demonstrator",
                       style: TextStyle(
-                        fontSize: 12,
-                        color: Color.fromRGBO(163, 163, 163, 1),
+                        fontSize: 12.sp,
+                        color: const Color.fromRGBO(163, 163, 163, 1),
                       ),
                     ),
-                    SizedBox(height: 5),
+                    SizedBox(height: 5.r),
                     Text(
                       "Albert Flores",
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         color: Colors.black,
                       ),
                     ),
@@ -55,23 +55,22 @@ class InstructorListPage extends StatelessWidget {
               ],
             ),
             content: Container(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 10.r),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: EdgeInsets.symmetric(vertical: 5.r),
                     width: double.infinity,
-                    // height: 30,
                     color: Colors.yellow,
                     child: Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5.r),
                           child: Icon(
                             Icons.calendar_month,
-                            size: 20,
+                            size: 20.r,
                           ),
                         ),
                         Column(
@@ -80,18 +79,18 @@ class InstructorListPage extends StatelessWidget {
                             Text(
                               '基礎程式設計',
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 12.sp,
                               ),
                             ),
                             Text(
                               "每周二 10:00-12:00",
                               style: TextStyle(
-                                fontSize: 11,
+                                fontSize: 11.sp,
                               ),
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           child: const Icon(Icons.chevron_right),
                         )
