@@ -13,7 +13,6 @@ class CourseListTile extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () {},
       child: Container(
-        color: Colors.yellow,
         padding: EdgeInsets.symmetric(vertical: 5.r),
         width: double.infinity,
         child: Row(

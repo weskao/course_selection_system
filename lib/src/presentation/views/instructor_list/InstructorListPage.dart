@@ -13,6 +13,11 @@ class InstructorListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final course = Course(name: '基礎程式設計', description: "基礎程式設計課程", schedule: "每周二 10:00-12:00", instructor: "Albert Flores");
+    final courseList = [
+      Course(name: '基礎程式設計', description: "基礎程式設計課程", schedule: "每周二, 10:00-12:00", instructor: "Albert Flores"),
+      Course(name: '人工智慧總整與實作', description: "人工智慧總整與實作課程", schedule: "每周四, 14:00-16:00", instructor: "Albert Flores"),
+      Course(name: '訊號與系統', description: "訊號與系統課程", schedule: "每周五, 10:00-12:00", instructor: "Albert Flores"),
+    ];
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
@@ -58,14 +63,11 @@ class InstructorListPage extends StatelessWidget {
               ],
             ),
             content: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CourseListTile(course: course),
-                Text('Hello there-2!'),
-                Text('Hello there-3!'),
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(courseList.length, (index) {
+                  return CourseListTile(course: courseList[index]);
+                })),
           ),
           ToggleListItem(
             title: Text('I am the second item'),
