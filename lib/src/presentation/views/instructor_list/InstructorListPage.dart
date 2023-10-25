@@ -30,7 +30,7 @@ class InstructorListPage extends StatelessWidget {
         ),
         itemPadding: EdgeInsets.all(10.r),
         trailing: const Icon(Icons.add),
-        // trailing: const Icon(Icons.minimize),
+        trailingExpanded: const Icon(Icons.minimize),
         children: [
           ToggleListItem(
             title: Row(
