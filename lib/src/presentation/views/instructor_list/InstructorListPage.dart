@@ -54,53 +54,51 @@ class InstructorListPage extends StatelessWidget {
                 )
               ],
             ),
-            content: Container(
-              padding: EdgeInsets.symmetric(vertical: 10.r),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 5.r),
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(left: 2.r, right: 10.r),
-                          child: Icon(
-                            Icons.calendar_month,
-                            size: 20.r,
-                            color: Color.fromRGBO(140, 140, 140, 1),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  color: Colors.yellow,
+                  padding: EdgeInsets.symmetric(vertical: 5.r),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 2.r, right: 10.r),
+                        child: Icon(
+                          Icons.calendar_month,
+                          size: 20.r,
+                          color: Color.fromRGBO(140, 140, 140, 1),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '基礎程式設計',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                            ),
                           ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '基礎程式設計',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                              ),
+                          Text(
+                            "每周二 10:00-12:00",
+                            style: TextStyle(
+                              fontSize: 11.sp,
                             ),
-                            Text(
-                              "每周二 10:00-12:00",
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          child: const Icon(Icons.chevron_right),
-                        )
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        child: const Icon(Icons.chevron_right),
+                      )
+                    ],
                   ),
-                  Text('Hello there-2!'),
-                  Text('Hello there-3!'),
-                ],
-              ),
+                ),
+                Text('Hello there-2!'),
+                Text('Hello there-3!'),
+              ],
             ),
           ),
           ToggleListItem(

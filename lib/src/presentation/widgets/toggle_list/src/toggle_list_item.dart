@@ -1,5 +1,6 @@
 import 'package:course_selection_system/src/presentation/widgets/toggle_list/src/toggle_list_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'toggle_list_data.dart';
@@ -163,7 +164,18 @@ class _ToggleListItemState extends State<ToggleListItem> with SingleTickerProvid
     return AnimatedBuilder(
       animation: _animationController!.view,
       builder: _buildItem,
-      child: widget.content,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5.r),
+            child: const Divider(
+              color: Color.fromRGBO(204, 206, 207, 1),
+              thickness: 1,
+            ),
+          ),
+          widget.content,
+        ],
+      ),
     );
   }
 
