@@ -12,12 +12,123 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesDefaultAvatarGen get defaultAvatar =>
+      const $AssetsImagesDefaultAvatarGen();
+
   /// File path: assets/images/icon_left_arrow.png
   AssetGenImage get iconLeftArrow =>
       const AssetGenImage('assets/images/icon_left_arrow.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [iconLeftArrow];
+}
+
+class $AssetsImagesDefaultAvatarGen {
+  const $AssetsImagesDefaultAvatarGen();
+
+  /// File path: assets/images/default_avatar/default_avatar_1.jpg
+  AssetGenImage get defaultAvatar1 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_1.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_10.jpg
+  AssetGenImage get defaultAvatar10 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_10.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_11.jpg
+  AssetGenImage get defaultAvatar11 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_11.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_12.jpg
+  AssetGenImage get defaultAvatar12 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_12.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_13.jpg
+  AssetGenImage get defaultAvatar13 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_13.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_14.jpg
+  AssetGenImage get defaultAvatar14 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_14.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_15.jpg
+  AssetGenImage get defaultAvatar15 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_15.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_16.jpg
+  AssetGenImage get defaultAvatar16 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_16.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_17.jpg
+  AssetGenImage get defaultAvatar17 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_17.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_18.jpg
+  AssetGenImage get defaultAvatar18 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_18.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_19.jpg
+  AssetGenImage get defaultAvatar19 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_19.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_2.jpg
+  AssetGenImage get defaultAvatar2 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_2.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_20.jpg
+  AssetGenImage get defaultAvatar20 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_20.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_3.jpg
+  AssetGenImage get defaultAvatar3 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_3.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_4.jpg
+  AssetGenImage get defaultAvatar4 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_4.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_5.jpg
+  AssetGenImage get defaultAvatar5 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_5.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_6.jpg
+  AssetGenImage get defaultAvatar6 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_6.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_7.jpg
+  AssetGenImage get defaultAvatar7 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_7.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_8.jpg
+  AssetGenImage get defaultAvatar8 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_8.jpg');
+
+  /// File path: assets/images/default_avatar/default_avatar_9.jpg
+  AssetGenImage get defaultAvatar9 =>
+      const AssetGenImage('assets/images/default_avatar/default_avatar_9.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        defaultAvatar1,
+        defaultAvatar10,
+        defaultAvatar11,
+        defaultAvatar12,
+        defaultAvatar13,
+        defaultAvatar14,
+        defaultAvatar15,
+        defaultAvatar16,
+        defaultAvatar17,
+        defaultAvatar18,
+        defaultAvatar19,
+        defaultAvatar2,
+        defaultAvatar20,
+        defaultAvatar3,
+        defaultAvatar4,
+        defaultAvatar5,
+        defaultAvatar6,
+        defaultAvatar7,
+        defaultAvatar8,
+        defaultAvatar9
+      ];
 }
 
 class Assets {

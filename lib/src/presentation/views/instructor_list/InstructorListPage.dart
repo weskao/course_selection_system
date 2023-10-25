@@ -1,4 +1,6 @@
+import 'package:course_selection_system/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widgets/PrimaryPage.dart';
 import '../../widgets/toggle_list/toggle_list.dart';
@@ -23,7 +25,35 @@ class InstructorListPage extends StatelessWidget {
         // trailing: const Icon(Icons.minimize),
         children: [
           ToggleListItem(
-            title: Text('I am the first item'),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ClipOval(
+                  child: Assets.images.defaultAvatar.defaultAvatar1.image(width: 40.r, height: 40.r),
+                ),
+                SizedBox(width: 10),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Demonstrator",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color.fromRGBO(163, 163, 163, 1),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Albert Flores",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
             content: Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Column(
