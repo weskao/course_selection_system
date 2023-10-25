@@ -63,14 +63,14 @@ class InstructorListPage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 5.r),
                     width: double.infinity,
-                    color: Colors.yellow,
                     child: Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 5.r),
+                          padding: EdgeInsets.only(left: 2.r, right: 10.r),
                           child: Icon(
                             Icons.calendar_month,
                             size: 20.r,
+                            color: Color.fromRGBO(140, 140, 140, 1),
                           ),
                         ),
                         Column(
