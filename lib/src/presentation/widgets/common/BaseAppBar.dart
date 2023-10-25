@@ -1,5 +1,6 @@
 import 'package:course_selection_system/src/data/common/constants/AppCommonParam.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'ArrowBackButton.dart';
 
@@ -67,7 +68,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             : Text(
                 title ?? "",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 18.sp,
                   color: Colors.black,
                   fontWeight: titleFontWeight ?? FontWeight.w600,
                 ),
