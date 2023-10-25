@@ -191,7 +191,7 @@ class _ToggleListItemState extends State<ToggleListItem> with SingleTickerProvid
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            InkWell(
+            GestureDetector(
               onTap: () => _onItemTapped(context),
               child: AnimatedContainer(
                 curve: data.curve,
