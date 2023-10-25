@@ -44,12 +44,14 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ? () async {
                         final callbackFunction = onBackCallbackData!;
                         final result = await callbackFunction();
-                        if (context.mounted) {
-                          Navigator.of(context).pop(result);
+                        if (context.mounted && Navigator.of(context).canPop()) {
+                            Navigator.of(context).pop();
                         }
                       }
                     : () {
-                        Navigator.of(context).pop();
+                        if (Navigator.of(context).canPop()) {
+                          Navigator.of(context).pop();
+                        }
                       },
                 child: const SizedBox(
                   height: double.infinity,
