@@ -1,4 +1,6 @@
 import 'package:course_selection_system/generated/assets.gen.dart';
+import 'package:course_selection_system/src/data/model/course/Course.dart';
+import 'package:course_selection_system/src/presentation/views/instructor_list/widget/CourseListTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,6 +12,7 @@ class InstructorListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final course = Course(name: '基礎程式設計', description: "基礎程式設計課程", schedule: "每周二 10:00-12:00", instructor: "Albert Flores");
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
@@ -44,7 +47,7 @@ class InstructorListPage extends StatelessWidget {
                     ),
                     SizedBox(height: 5.r),
                     Text(
-                      "Albert Flores",
+                      course.instructor,
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.black,
@@ -58,44 +61,7 @@ class InstructorListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  color: Colors.yellow,
-                  padding: EdgeInsets.symmetric(vertical: 5.r),
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 2.r, right: 10.r),
-                        child: Icon(
-                          Icons.calendar_month,
-                          size: 20.r,
-                          color: Color.fromRGBO(140, 140, 140, 1),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '基礎程式設計',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                          Text(
-                            "每周二 10:00-12:00",
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      GestureDetector(
-                        child: const Icon(Icons.chevron_right),
-                      )
-                    ],
-                  ),
-                ),
+                CourseListTile(course: course),
                 Text('Hello there-2!'),
                 Text('Hello there-3!'),
               ],
