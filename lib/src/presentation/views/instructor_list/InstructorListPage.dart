@@ -11,6 +11,13 @@ class InstructorListPage extends StatelessWidget {
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
+        itemBorderDecoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(3),
+        ),
         trailing: const Icon(Icons.add),
         // trailing: const Icon(Icons.minimize),
         children: [

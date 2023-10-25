@@ -95,6 +95,8 @@ class ToggleList extends StatefulWidget {
   /// Set this to prevent animations from ending beneath these elements.
   final EdgeInsets viewPadding;
 
+  final BoxDecoration? itemBorderDecoration;
+
   /// Constructs a toggle list, that holds [ToggleListItem]s.
   ///
   /// The constructor contains parameters that controls
@@ -117,6 +119,7 @@ class ToggleList extends StatefulWidget {
     this.trailing = const Icon(Icons.expand_more),
     this.trailingExpanded,
     this.viewPadding = const EdgeInsets.all(0),
+    this.itemBorderDecoration,
   }) : super(key: key);
 
   @override
@@ -167,18 +170,21 @@ class _ToggleListState extends State<ToggleList> {
           shrinkWrap: widget.shrinkWrap,
           separatorBuilder: (context, index) => widget.divider,
           itemBuilder: (context, index) {
-            return ToggleListData(
-              child: widget.children[index],
-              children: widget.children,
-              curve: widget.curve,
-              listController: _listController,
-              scrollController: _scrollController,
-              flipTrailingOnToggle: widget.flipTrailingOnToggle,
-              toggleAnimationDuration: widget.toggleAnimationDuration,
-              scrollDuration: widget.scrollDuration,
-              scrollPosition: widget.scrollPosition,
-              trailing: widget.trailing,
-              trailingExpanded: widget.trailingExpanded,
+            return Container(
+              decoration: widget.itemBorderDecoration,
+              child: ToggleListData(
+                child: widget.children[index],
+                children: widget.children,
+                curve: widget.curve,
+                listController: _listController,
+                scrollController: _scrollController,
+                flipTrailingOnToggle: widget.flipTrailingOnToggle,
+                toggleAnimationDuration: widget.toggleAnimationDuration,
+                scrollDuration: widget.scrollDuration,
+                scrollPosition: widget.scrollPosition,
+                trailing: widget.trailing,
+                trailingExpanded: widget.trailingExpanded,
+              ),
             );
           },
         ),
