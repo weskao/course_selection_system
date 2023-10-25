@@ -2,6 +2,8 @@ import 'package:course_selection_system/src/data/model/course/Course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../course_detail/CourseDetailPage.dart';
+
 class CourseListTile extends StatelessWidget {
   final Course course;
 
@@ -11,7 +13,9 @@ class CourseListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {},
+      onTap: () {
+        CourseDetailPage.push(context, course);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 5.r),
         width: double.infinity,
