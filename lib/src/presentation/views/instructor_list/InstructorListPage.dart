@@ -16,6 +16,7 @@ class InstructorListPage extends StatelessWidget {
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
+        scrollPhysics: const ClampingScrollPhysics(),
         itemBorderDecoration: BoxDecoration(
           border: Border.all(
             color: Colors.black,
