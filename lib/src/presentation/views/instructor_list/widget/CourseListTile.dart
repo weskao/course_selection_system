@@ -39,7 +39,7 @@ class CourseListTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  course.schedule,
+                  course.getSchedule(),
                   style: TextStyle(
                     fontSize: 11.sp,
                   ),

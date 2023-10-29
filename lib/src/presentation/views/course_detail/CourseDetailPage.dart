@@ -36,7 +36,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            "上課時間: ${course.schedule}",
+            "上課時間: ${course.getSchedule()}",
             style: TextStyle(
               fontSize: 13.sp,
             ),

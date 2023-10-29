@@ -1,9 +1,11 @@
 import 'package:course_selection_system/generated/assets.gen.dart';
 import 'package:course_selection_system/src/data/model/course/Course.dart';
+import 'package:course_selection_system/src/data/model/course/Instructor.dart';
 import 'package:course_selection_system/src/presentation/views/instructor_list/widget/CourseListTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../data/common/data/Time.dart';
 import '../../widgets/PrimaryPage.dart';
 import '../../widgets/toggle_list/toggle_list.dart';
 
@@ -12,12 +14,34 @@ class InstructorListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final course = Course(name: '基礎程式設計', description: "基礎程式設計課程", schedule: "每周二 10:00-12:00", instructor: "Albert Flores");
     final courseList = [
-      Course(name: '基礎程式設計', description: "基礎程式設計課程", schedule: "每周二, 10:00-12:00", instructor: "Albert Flores"),
-      Course(name: '人工智慧總整與實作', description: "人工智慧總整與實作課程", schedule: "每周四, 14:00-16:00", instructor: "Albert Flores"),
-      Course(name: '訊號與系統', description: "訊號與系統課程", schedule: "每周五, 10:00-12:00", instructor: "Albert Flores"),
+      Course(
+          name: '基礎程式設計',
+          description: "基礎程式設計課程",
+          dayOfWeek: 2,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructor: "Albert Flores"),
+      Course(
+          name: '人工智慧總整與實作',
+          description: "人工智慧總整與實作課程",
+          dayOfWeek: 4,
+          startTime: Time(hour: 14, minute: 0),
+          endTime: Time(hour: 16, minute: 0),
+          instructor: "Albert Flores"),
+      Course(
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructor: "Albert Flores"),
     ];
+
+    final instructorList = [
+      Instructor(name: "Albert Flores", rankLevel: 1, imageUrl: 'assets/images/default_avatar/default_avatar_2.jpg', courseList: courseList)
+    ];
+
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
@@ -37,14 +61,14 @@ class InstructorListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipOval(
-                  child: Assets.images.defaultAvatar.defaultAvatar1.image(width: 40.r, height: 40.r),
+                  child: AssetGenImage(instructorList[0].imageUrl).image(width: 40.r, height: 40.r),
                 ),
                 SizedBox(width: 10.r),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Demonstrator",
+                      instructorList[0].rankName,
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: const Color.fromRGBO(163, 163, 163, 1),
@@ -52,7 +76,7 @@ class InstructorListPage extends StatelessWidget {
                     ),
                     SizedBox(height: 5.r),
                     Text(
-                      course.instructor,
+                      instructorList[0].name,
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.black,
