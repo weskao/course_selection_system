@@ -3,6 +3,7 @@ import 'package:course_selection_system/src/presentation/views/instructor_list/w
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../data/common/data/CourseDetailData.dart';
 import '../../../data/mock/MockInstructorData.dart';
 import '../../widgets/PrimaryPage.dart';
 import '../../widgets/toggle_list/toggle_list.dart';
@@ -63,7 +64,9 @@ class InstructorListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(courseList.length, (courseIndex) {
-                return CourseListTile(course: courseList[courseIndex], instructorName: instructorName);
+                return CourseListTile(
+                  courseDetailData: CourseDetailData(course: courseList[courseIndex], instructorName: instructorName),
+                );
               }),
             ),
           );

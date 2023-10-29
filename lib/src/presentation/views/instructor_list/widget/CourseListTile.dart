@@ -1,21 +1,20 @@
-import 'package:course_selection_system/src/data/model/course/Course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../data/common/data/CourseDetailData.dart';
 import '../../course_detail/CourseDetailPage.dart';
 
 class CourseListTile extends StatelessWidget {
-  final Course course;
-  final String instructorName;
+  final CourseDetailData courseDetailData;
 
-  const CourseListTile({super.key, required this.course, required this.instructorName});
+  const CourseListTile({super.key, required this.courseDetailData});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        CourseDetailPage.push(context, course, instructorName);
+        CourseDetailPage.push(context, courseDetailData.course, courseDetailData.instructorName);
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 5.r),
@@ -34,13 +33,13 @@ class CourseListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  course.name,
+                  courseDetailData.course.name,
                   style: TextStyle(
                     fontSize: 12.sp,
                   ),
                 ),
                 Text(
-                  course.getSchedule(),
+                  courseDetailData.course.getSchedule(),
                   style: TextStyle(
                     fontSize: 11.sp,
                   ),
