@@ -6,15 +6,16 @@ import '../../course_detail/CourseDetailPage.dart';
 
 class CourseListTile extends StatelessWidget {
   final Course course;
+  final String instructorName;
 
-  const CourseListTile({super.key, required this.course});
+  const CourseListTile({super.key, required this.course, required this.instructorName});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        CourseDetailPage.push(context, course);
+        CourseDetailPage.push(context, course, instructorName);
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 5.r),

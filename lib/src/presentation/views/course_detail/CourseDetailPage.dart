@@ -8,12 +8,20 @@ import '../../widgets/PrimaryPage.dart';
 
 class CourseDetailPage extends StatelessWidget {
   final Course course;
+  final String instructorName;
 
   static String TAG = "CourseDetailPage";
 
-  const CourseDetailPage({super.key, required this.course});
+  const CourseDetailPage({super.key, required this.course, required this.instructorName});
 
-  static push(BuildContext context, Course course) => Navigator.push(context, getCupertinoPageRoute(TAG, CourseDetailPage(course: course)));
+  static push(BuildContext context, Course course, String instructorName) => Navigator.push(
+      context,
+      getCupertinoPageRoute(
+          TAG,
+          CourseDetailPage(
+            course: course,
+            instructorName: instructorName,
+          )));
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class CourseDetailPage extends StatelessWidget {
             ),
           ),
           Text(
-            "授課講師: ${course.instructor}",
+            "授課講師: $instructorName",
             style: TextStyle(
               fontSize: 13.sp,
             ),
