@@ -157,40 +157,35 @@ class _ToggleListState extends State<ToggleList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      controller: _scrollController,
-      interactive: true,
-      thumbVisibility: false,
-      child: Padding(
-        padding: widget.innerPadding,
-        child: ListView.separated(
-          cacheExtent: MediaQuery.of(context).size.height * 2,
-          controller: _scrollController,
-          itemCount: widget.children.length,
-          scrollDirection: widget.scrollDirection,
-          physics: widget.scrollPhysics,
-          shrinkWrap: widget.shrinkWrap,
-          separatorBuilder: (context, index) => widget.divider,
-          itemBuilder: (context, index) {
-            return Container(
-              padding: widget.itemPadding,
-              decoration: widget.itemBorderDecoration,
-              child: ToggleListData(
-                child: widget.children[index],
-                children: widget.children,
-                curve: widget.curve,
-                listController: _listController,
-                scrollController: _scrollController,
-                flipTrailingOnToggle: widget.flipTrailingOnToggle,
-                toggleAnimationDuration: widget.toggleAnimationDuration,
-                scrollDuration: widget.scrollDuration,
-                scrollPosition: widget.scrollPosition,
-                trailing: widget.trailing,
-                trailingExpanded: widget.trailingExpanded,
-              ),
-            );
-          },
-        ),
+    return Padding(
+      padding: widget.innerPadding,
+      child: ListView.separated(
+        cacheExtent: MediaQuery.of(context).size.height * 2,
+        controller: _scrollController,
+        itemCount: widget.children.length,
+        scrollDirection: widget.scrollDirection,
+        physics: widget.scrollPhysics,
+        shrinkWrap: widget.shrinkWrap,
+        separatorBuilder: (context, index) => widget.divider,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: widget.itemPadding,
+            decoration: widget.itemBorderDecoration,
+            child: ToggleListData(
+              child: widget.children[index],
+              children: widget.children,
+              curve: widget.curve,
+              listController: _listController,
+              scrollController: _scrollController,
+              flipTrailingOnToggle: widget.flipTrailingOnToggle,
+              toggleAnimationDuration: widget.toggleAnimationDuration,
+              scrollDuration: widget.scrollDuration,
+              scrollPosition: widget.scrollPosition,
+              trailing: widget.trailing,
+              trailingExpanded: widget.trailingExpanded,
+            ),
+          );
+        },
       ),
     );
   }
