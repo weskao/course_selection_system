@@ -5,13 +5,13 @@ import 'enum/InstructorRank.dart';
 class Instructor {
   final String name;
   final int rankLevel;
-  final String imageUrl;
+  final String avatarUrl;
   final List<Course> courseList;
 
   Instructor({
     required this.name,
     required this.rankLevel,
-    required this.imageUrl,
+    required this.avatarUrl,
     required this.courseList,
   });
 
@@ -22,7 +22,7 @@ class Instructor {
     return Instructor(
       name: json['name'],
       rankLevel: json['rankLevel'],
-      imageUrl: json['imageUrl'],
+      avatarUrl: json['avatarUrl'],
       courseList: (json['courseList'] as List).map((e) => Course.fromJson(e as Map<String, dynamic>)).toList(),
     );
   }
@@ -31,7 +31,7 @@ class Instructor {
     return {
       'name': name,
       'rankLevel': rankLevel,
-      'imageUrl': imageUrl,
+      'avatarUrl': avatarUrl,
       'courseList': courseList.map((course) => course.toJson()).toList(),
     };
   }
@@ -39,13 +39,13 @@ class Instructor {
   Instructor copyWith({
     String? name,
     int? rankLevel,
-    String? imageUrl,
+    String? avatarUrl,
     List<Course>? courseList,
   }) {
     return Instructor(
       name: name ?? this.name,
       rankLevel: rankLevel ?? this.rankLevel,
-      imageUrl: imageUrl ?? this.imageUrl,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
       courseList: courseList ?? this.courseList,
     );
   }
