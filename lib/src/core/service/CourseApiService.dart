@@ -10,7 +10,7 @@ import '../../data/model/course/Instructor.dart';
 
 class CourseApiService {
   // 課程列表 API (Read)
-  DataApiResult<List<Course>> getCourseList(int? instructorId) {
+  Future<DataApiResult<List<Course>>> getCourseList(int? instructorId) async {
     if (instructorId == null) {
       return DataApiResult<List<Course>>(
         data: MockCourseData.allCourseList,
@@ -34,7 +34,7 @@ class CourseApiService {
   }
 
   // 授課講師列表 API (Read)
-  DataApiResult<List<Instructor>> getInstructorList() {
+  Future<DataApiResult<List<Instructor>>> getInstructorList() async {
     return DataApiResult<List<Instructor>>(
       data: MockInstructorData.instructorList,
       code: 200,
@@ -42,7 +42,7 @@ class CourseApiService {
   }
 
   // 授課講師所開課程列表 API (Read)
-  DataApiResult<List<Course>> getCoursesByInstructor(int instructorId) {
+  Future<DataApiResult<List<Course>>> getCoursesByInstructor(int instructorId) async {
     var instructor = MockInstructorData.instructorList.firstWhereOrNull((instructor) => instructor.id == instructorId);
 
     if (instructor == null) {
@@ -59,7 +59,7 @@ class CourseApiService {
   }
 
   // 建立新講師 API (Create)
-  DataApiResult<Instructor> createInstructor(Instructor instructor) {
+  Future<DataApiResult<Instructor>> createInstructor(Instructor instructor) async {
     MockInstructorData.instructorList.add(instructor);
     return DataApiResult<Instructor>(
       data: instructor,
@@ -73,7 +73,7 @@ class CourseApiService {
   }
 
   // 建立新課程 API (Create)
-  DataApiResult createCourse(Course course) {
+  Future<DataApiResult> createCourse(Course course) async {
     Course newCourse = Course(
       id: _nextId,
       name: course.name,
@@ -96,7 +96,7 @@ class CourseApiService {
   }
 
   // 更新課程內容 API (Update)
-  DataApiResult<Course> updateCourse(Course updatedCourse) {
+  Future<DataApiResult<Course>> updateCourse(Course updatedCourse) async {
     final toFindCourse = MockCourseData.allCourseList.firstWhereOrNull((e) => e.id == updatedCourse.id);
     if (toFindCourse != null) {
       return DataApiResult<Course>(
@@ -112,7 +112,7 @@ class CourseApiService {
   }
 
   // 刪除課程 API (Delete)
-  DataApiResult<bool> deleteCourse(int courseId) {
+  Future<DataApiResult<bool>> deleteCourse(int courseId) async {
     int initialLength = MockCourseData.allCourseList.length;
 
     MockCourseData.allCourseList.removeWhere((course) => course.id == courseId);
