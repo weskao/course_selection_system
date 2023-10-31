@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:course_selection_system/src/data/mock/MockCourseData.dart';
@@ -67,13 +67,13 @@ class CourseApiService {
     );
   }
 
-  static int get _nextId {
+  int get _nextId {
     if (MockCourseData.allCourseList.isEmpty) return 1;
     return MockCourseData.allCourseList.map((course) => course.id).reduce((value, element) => value > element ? value : element) + 1;
   }
 
   // 建立新課程 API (Create)
-  static DataApiResult createCourse(Course course) {
+  DataApiResult createCourse(Course course) {
     Course newCourse = Course(
       id: _nextId,
       name: course.name,
