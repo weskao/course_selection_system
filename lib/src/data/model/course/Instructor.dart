@@ -3,12 +3,14 @@ import 'Course.dart';
 import 'enum/InstructorRank.dart';
 
 class Instructor {
+  final int id;
   final String name;
   final int rankLevel;
   final String avatarUrl;
   final List<Course> courseList;
 
   Instructor({
+    required this.id,
     required this.name,
     required this.rankLevel,
     required this.avatarUrl,
@@ -20,6 +22,7 @@ class Instructor {
 
   factory Instructor.fromJson(Map<String, dynamic> json) {
     return Instructor(
+      id: json['id'],
       name: json['name'],
       rankLevel: json['rankLevel'],
       avatarUrl: json['avatarUrl'],
@@ -29,6 +32,7 @@ class Instructor {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'rankLevel': rankLevel,
       'avatarUrl': avatarUrl,
@@ -37,12 +41,14 @@ class Instructor {
   }
 
   Instructor copyWith({
+    int? id,
     String? name,
     int? rankLevel,
     String? avatarUrl,
     List<Course>? courseList,
   }) {
     return Instructor(
+      id: id ?? this.id,
       name: name ?? this.name,
       rankLevel: rankLevel ?? this.rankLevel,
       avatarUrl: avatarUrl ?? this.avatarUrl,

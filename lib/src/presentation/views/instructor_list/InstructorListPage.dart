@@ -36,7 +36,7 @@ class InstructorListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipOval(
-                  child: AssetGenImage(MockInstructorData.instructorList[instructorIndex].imageUrl).image(width: 40.r, height: 40.r),
+                  child: AssetGenImage(MockInstructorData.instructorList[instructorIndex].avatarUrl).image(width: 40.r, height: 40.r),
                 ),
                 SizedBox(width: 10.r),
                 Column(
