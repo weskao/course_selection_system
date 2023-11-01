@@ -1,5 +1,6 @@
 import 'package:course_selection_system/src/core/extensions/list_extension.dart';
 import 'package:course_selection_system/src/core/service/CourseApiService.dart';
+import 'package:course_selection_system/src/data/common/api/DataApiResult.dart';
 import 'package:course_selection_system/src/data/common/data/Time.dart';
 import 'package:course_selection_system/src/data/mock/CourseDataSource.dart';
 import 'package:course_selection_system/src/data/mock/MockCourse.dart';
@@ -8,10 +9,11 @@ import 'package:course_selection_system/src/data/model/course/Course.dart';
 import 'package:course_selection_system/src/data/model/course/Instructor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main() {
-  late BaseCourseDataSource courseDataSource;
-  late CourseApiService apiService;
+late BaseCourseDataSource courseDataSource;
+late CourseApiService apiService;
+late DataApiResult<List<Course>> result;
 
+void main() {
   group('getCoursesByInstructorId', () {
     test('should return course list when instructorId exist', () {
       final allCourseList = [
@@ -68,13 +70,7 @@ void main() {
           courseList: MockCourse.courseList3,
         ),
       ];
-
-      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
-      apiService = CourseApiService(courseDataSource);
-
       const existedInstructorId = 5;
-      final result = apiService.getCoursesByInstructorId(existedInstructorId);
-
       final List<Course> expectedInstructorCourseList = [
         Course(
           id: 6,
@@ -87,8 +83,10 @@ void main() {
         ),
       ];
 
-      expect(result.code, 200);
-      expect(result.data.isEqualTo(expectedInstructorCourseList), isTrue);
+      givenCourseDataSource(allCourseList, instructorList);
+      initApiService(courseDataSource);
+      requestGetCoursesByInstructorIdApi(existedInstructorId);
+      expectedCourseResultShouldBe(result, 200, expectedInstructorCourseList);
     });
 
     test('should return code 404 when instructorId not exist', () {
@@ -146,17 +144,30 @@ void main() {
           courseList: MockCourse.courseList3,
         ),
       ];
-
-      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
-      apiService = CourseApiService(courseDataSource);
-
       const notExistedInstructorId = 0;
-      final result = apiService.getCoursesByInstructorId(notExistedInstructorId);
-
       final List<Course> expectedInstructorCourseList = [];
 
-      expect(result.code, 404);
-      expect(result.data.isEqualTo(expectedInstructorCourseList), isTrue);
+      givenCourseDataSource(allCourseList, instructorList);
+      initApiService(courseDataSource);
+      requestGetCoursesByInstructorIdApi(notExistedInstructorId);
+      expectedCourseResultShouldBe(result, 404, expectedInstructorCourseList);
     });
   });
+}
+
+void requestGetCoursesByInstructorIdApi(int instructorId) {
+  result = apiService.getCoursesByInstructorId(instructorId);
+}
+
+void expectedCourseResultShouldBe(DataApiResult<List<Course>> result, int expectedCode, List<Course> expectedInstructorCourseList) {
+  expect(result.code, expectedCode);
+  expect(result.data.isEqualTo(expectedInstructorCourseList), isTrue);
+}
+
+void givenCourseDataSource(List<Course> allCourseList, List<Instructor> instructorList) {
+  courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
+}
+
+void initApiService(BaseCourseDataSource courseDataSource) {
+  apiService = CourseApiService(courseDataSource);
 }
