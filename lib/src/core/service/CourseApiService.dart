@@ -84,6 +84,7 @@ class CourseApiService {
       dayOfWeek: course.dayOfWeek,
       startTime: course.startTime,
       endTime: course.endTime,
+      instructorId: course.instructorId,
     );
 
     _dataSource.getAllCourses().add(newCourse);
