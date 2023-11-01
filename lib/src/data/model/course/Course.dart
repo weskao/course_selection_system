@@ -7,6 +7,7 @@ class Course {
   final int dayOfWeek; // e.g., 1 for Monday, 2 for Tuesday, etc.
   final Time startTime;
   final Time endTime;
+  final int instructorId;
 
   static const int MIN_DAY_OF_WEEK = 1;
   static const int MAX_DAY_OF_WEEK = 7;
@@ -18,6 +19,7 @@ class Course {
     required this.dayOfWeek,
     required this.startTime,
     required this.endTime,
+    required this.instructorId,
   }) : assert(dayOfWeek >= MIN_DAY_OF_WEEK && dayOfWeek <= MAX_DAY_OF_WEEK, 'dayOfWeek must be between 1 and 7');
 
   String getSchedule() {
@@ -42,6 +44,7 @@ class Course {
       dayOfWeek: json['dayOfWeek'],
       startTime: Time.fromJson(json['startTime']),
       endTime: Time.fromJson(json['endTime']),
+      instructorId: json['instructorId'],
     );
   }
 
@@ -53,6 +56,7 @@ class Course {
       'dayOfWeek': dayOfWeek,
       'startTime': startTime.toJson(),
       'endTime': endTime.toJson(),
+      'instructorId': instructorId,
     };
   }
 
