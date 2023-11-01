@@ -284,7 +284,7 @@ void main() {
       expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
     });
 
-    test('should return 404 and remain original course list data when to updated course id not exist', () {
+    test('should return 404 and remain original course list data when to update course id not exist', () {
       final allCourseList = [
         Course(
           id: 6,
@@ -423,6 +423,75 @@ void main() {
       initApiService(courseDataSource);
       requestDeleteCourse(toDeletedCourseId);
       expectedBoolResultShouldBe(boolResult, 200, isTrue);
+      requestGetAllCourses();
+      expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
+    });
+
+    test('should return 404 and remain original course list data when to delete course id not exist', () {
+      final allCourseList = [
+        Course(
+          id: 6,
+          name: '進階英文',
+          description: "進階英文課程",
+          dayOfWeek: 3,
+          startTime: Time(hour: 15, minute: 30),
+          endTime: Time(hour: 18, minute: 30),
+          instructorId: 5,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      final instructorList = [
+        Instructor(
+          id: 234,
+          name: "Floyd Miles",
+          rankLevel: 2,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_5.jpg',
+          courseList: MockCourse.courseList2,
+        ),
+        Instructor(
+          id: 5,
+          name: "Savannah Nguyen",
+          rankLevel: 3,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_8.jpg',
+          courseList: MockCourse.courseList3,
+        ),
+      ];
+      const notExistedCourseId = 777;
+
+      final List<Course> expectedAllCourseList = [
+        Course(
+          id: 6,
+          name: '進階英文',
+          description: "進階英文課程",
+          dayOfWeek: 3,
+          startTime: Time(hour: 15, minute: 30),
+          endTime: Time(hour: 18, minute: 30),
+          instructorId: 5,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      givenCourseDataSource(allCourseList, instructorList);
+      initApiService(courseDataSource);
+      requestDeleteCourse(notExistedCourseId);
+      expectedBoolResultShouldBe(boolResult, 404, isFalse);
       requestGetAllCourses();
       expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
     });
