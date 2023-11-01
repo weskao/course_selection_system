@@ -73,10 +73,9 @@ void main() {
       apiService = CourseApiService(courseDataSource);
 
       const existedInstructorId = 5;
-      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
       final result = apiService.getCoursesByInstructorId(existedInstructorId);
 
-      final expectedInstructorCourseList = [
+      final List<Course> expectedInstructorCourseList = [
         Course(
           id: 6,
           name: '進階英文',
@@ -152,7 +151,6 @@ void main() {
       apiService = CourseApiService(courseDataSource);
 
       const notExistedInstructorId = 0;
-      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
       final result = apiService.getCoursesByInstructorId(notExistedInstructorId);
 
       final List<Course> expectedInstructorCourseList = [];
