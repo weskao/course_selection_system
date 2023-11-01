@@ -363,6 +363,80 @@ void main() {
       expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
     });
   });
+
+  group('updateCourse', () {
+    test('should return 200 and update target course data when course id exist', () {
+      const existedCourseId = 6;
+
+      final allCourseList = [
+        Course(
+          id: existedCourseId,
+          name: '進階英文',
+          description: "進階英文課程",
+          dayOfWeek: 3,
+          startTime: Time(hour: 15, minute: 30),
+          endTime: Time(hour: 18, minute: 30),
+          instructorId: 5,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      final instructorList = [
+        Instructor(
+          id: 234,
+          name: "Floyd Miles",
+          rankLevel: 2,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_5.jpg',
+          courseList: MockCourse.courseList2,
+        ),
+        Instructor(
+          id: 5,
+          name: "Savannah Nguyen",
+          rankLevel: 3,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_8.jpg',
+          courseList: MockCourse.courseList3,
+        ),
+      ];
+
+      final Course toUpdatedCourse = Course(
+        id: existedCourseId,
+        name: '進階英文2',
+        description: "進階英文課程2",
+        dayOfWeek: 2,
+        startTime: Time(hour: 12, minute: 0),
+        endTime: Time(hour: 14, minute: 0),
+        instructorId: 5,
+      );
+
+      final List<Course> expectedAllCourseList = [
+        toUpdatedCourse,
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      givenCourseDataSource(allCourseList, instructorList);
+      initApiService(courseDataSource);
+      requestUpdateCourse(toUpdatedCourse);
+      expectedBoolResultShouldBe(boolResult, 200, isTrue);
+      requestGetAllCourses();
+      expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
+    });
+  });
 }
 
 void requestUpdateCourse(Course toUpdatedCourse) {
