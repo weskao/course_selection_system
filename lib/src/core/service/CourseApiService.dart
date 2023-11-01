@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:collection/collection.dart';
 import 'package:course_selection_system/src/data/mock/MockCourseData.dart';
 
@@ -82,7 +80,16 @@ class CourseApiService {
   }
 
   // 建立新課程 API (Create)
-  DataApiResult createCourse(Course course) {
+  DataApiResult<Course> createCourse(Course course) {
+    var existingCourse = MockCourseData.allCourseList.firstWhereOrNull((e) => e.id == course.id);
+
+    if (existingCourse != null) {
+      return DataApiResult<Course>(
+        data: existingCourse,
+        code: 409,
+      );
+    }
+
     Course newCourse = Course(
       id: _nextId,
       name: course.name,
@@ -92,16 +99,11 @@ class CourseApiService {
       endTime: course.endTime,
     );
 
-    DataApiResult<Course> response = DataApiResult(
+    MockCourseData.allCourseList.add(newCourse);
+    return DataApiResult<Course>(
       data: newCourse,
       code: 201,
     );
-
-    if (response.code == HttpStatus.ok || response.code == HttpStatus.created) {
-      MockCourseData.allCourseList.add(newCourse);
-    }
-
-    return response;
   }
 
   // 更新課程內容 API (Update)
