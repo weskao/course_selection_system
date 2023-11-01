@@ -25,4 +25,20 @@ class Time {
       'minute': minute,
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    if (other is Time) {
+      return hour == other.hour && minute == other.minute;
+    }
+
+    return false;
+  }
+
+  @override
+  int get hashCode {
+    return hour.hashCode ^ minute.hashCode;
+  }
 }

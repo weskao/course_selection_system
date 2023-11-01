@@ -65,7 +65,13 @@ class Course {
     if (identical(this, other)) return true;
 
     if (other is Course) {
-      return id == other.id;
+      return id == other.id &&
+          name == other.name &&
+          description == other.description &&
+          dayOfWeek == other.dayOfWeek &&
+          startTime == other.startTime &&
+          endTime == other.endTime &&
+          instructorId == other.instructorId;
     }
 
     return false;
@@ -73,6 +79,12 @@ class Course {
 
   @override
   int get hashCode {
-    return id.hashCode;
+    return id.hashCode ^
+    name.hashCode ^
+    description.hashCode ^
+    dayOfWeek.hashCode ^
+    startTime.hashCode ^
+    endTime.hashCode ^
+    instructorId.hashCode;
   }
 }
