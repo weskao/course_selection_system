@@ -11,7 +11,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 late BaseCourseDataSource courseDataSource;
 late CourseApiService apiService;
-late DataApiResult<List<Course>> result;
+late DataApiResult<List<Course>> courseListResult;
+late DataApiResult<bool> boolResult;
 
 void main() {
   group('getCoursesByInstructorId', () {
@@ -86,7 +87,7 @@ void main() {
       givenCourseDataSource(allCourseList, instructorList);
       initApiService(courseDataSource);
       requestGetCoursesByInstructorIdApi(existedInstructorId);
-      expectedCourseResultShouldBe(result, 200, expectedInstructorCourseList);
+      expectedCourseResultShouldBe(courseListResult, 200, expectedInstructorCourseList);
     });
 
     test('should return code 404 when instructorId not exist', () {
@@ -150,7 +151,7 @@ void main() {
       givenCourseDataSource(allCourseList, instructorList);
       initApiService(courseDataSource);
       requestGetCoursesByInstructorIdApi(notExistedInstructorId);
-      expectedCourseResultShouldBe(result, 404, expectedInstructorCourseList);
+      expectedCourseResultShouldBe(courseListResult, 404, expectedInstructorCourseList);
     });
 
     test('should return code 200 and empty list when instructor has No any courses', () {
@@ -206,7 +207,7 @@ void main() {
       givenCourseDataSource(allCourseList, instructorList);
       initApiService(courseDataSource);
       requestGetCoursesByInstructorIdApi(existedInstructorId);
-      expectedCourseResultShouldBe(result, 200, expectedInstructorCourseList);
+      expectedCourseResultShouldBe(courseListResult, 200, expectedInstructorCourseList);
     });
   });
 
@@ -278,27 +279,113 @@ void main() {
       givenCourseDataSource(allCourseList, instructorList);
       initApiService(courseDataSource);
       requestUpdateCourse(toUpdatedCourse);
+      expectedBoolResultShouldBe(boolResult, 200, isTrue);
       requestGetAllCourses();
-      expectedCourseResultShouldBe(result, 200, expectedAllCourseList);
+      expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
+    });
+
+    test('should return 404 and remain original course list data when to updated course id not exist', () {
+      final allCourseList = [
+        Course(
+          id: 6,
+          name: '進階英文',
+          description: "進階英文課程",
+          dayOfWeek: 3,
+          startTime: Time(hour: 15, minute: 30),
+          endTime: Time(hour: 18, minute: 30),
+          instructorId: 5,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      final instructorList = [
+        Instructor(
+          id: 234,
+          name: "Floyd Miles",
+          rankLevel: 2,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_5.jpg',
+          courseList: MockCourse.courseList2,
+        ),
+        Instructor(
+          id: 5,
+          name: "Savannah Nguyen",
+          rankLevel: 3,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_8.jpg',
+          courseList: MockCourse.courseList3,
+        ),
+      ];
+      const notExistedCourseId = 999;
+
+      final Course nonExistentCourseToUpdate = Course(
+        id: notExistedCourseId, // Some non-existent course ID.
+        name: '不存在的課程', // Name for the non-existent course.
+        description: "描述",
+        dayOfWeek: 1,
+        startTime: Time(hour: 9, minute: 0),
+        endTime: Time(hour: 11, minute: 0),
+        instructorId: 5,
+      );
+
+      final List<Course> expectedAllCourseList = [
+        Course(
+          id: 6,
+          name: '進階英文',
+          description: "進階英文課程",
+          dayOfWeek: 3,
+          startTime: Time(hour: 15, minute: 30),
+          endTime: Time(hour: 18, minute: 30),
+          instructorId: 5,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
+        ),
+      ];
+
+      givenCourseDataSource(allCourseList, instructorList);
+      initApiService(courseDataSource);
+      requestUpdateCourse(nonExistentCourseToUpdate);
+      expectedBoolResultShouldBe(boolResult, 404, isFalse);
+      requestGetAllCourses();
+      expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
     });
   });
 }
 
 void requestUpdateCourse(Course toUpdatedCourse) {
-  apiService.updateCourse(toUpdatedCourse);
+  boolResult = apiService.updateCourse(toUpdatedCourse);
 }
 
 void requestGetCoursesByInstructorIdApi(int instructorId) {
-  result = apiService.getCoursesByInstructorId(instructorId);
+  courseListResult = apiService.getCoursesByInstructorId(instructorId);
 }
 
 void requestGetAllCourses() {
-  result = apiService.getCourseList();
+  courseListResult = apiService.getCourseList();
 }
 
-void expectedCourseResultShouldBe(DataApiResult<List<Course>> result, int expectedCode, List<Course> expectedInstructorCourseList) {
+void expectedCourseResultShouldBe(DataApiResult<List<Course>> result, int expectedCode, List<Course> expectedInstructorCourseList,
+    {Matcher? matcher = isTrue}) {
   expect(result.code, expectedCode);
-  expect(result.data.isEqualTo(expectedInstructorCourseList), isTrue);
+  expect(result.data.isEqualTo(expectedInstructorCourseList), matcher);
+}
+
+void expectedBoolResultShouldBe(DataApiResult<bool> boolResult, int expectedCode, Matcher matcher) {
+  expect(boolResult.code, expectedCode);
+  expect(boolResult.data, matcher);
 }
 
 void givenCourseDataSource(List<Course> allCourseList, List<Instructor> instructorList) {
