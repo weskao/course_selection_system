@@ -1,10 +1,10 @@
 import 'package:course_selection_system/generated/assets.gen.dart';
+import 'package:course_selection_system/src/data/mock/MockCourseDataSource.dart';
 import 'package:course_selection_system/src/presentation/views/instructor_list/widget/CourseListTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/common/data/CourseDetailData.dart';
-import '../../../data/mock/MockInstructorData.dart';
 import '../../widgets/PrimaryPage.dart';
 import '../../widgets/toggle_list/toggle_list.dart';
 
@@ -13,6 +13,8 @@ class InstructorListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataSource = MockCourseDataSource();
+
     return PrimaryPage(
       title: "講師清單",
       topWidget: ToggleList(
@@ -27,23 +29,23 @@ class InstructorListPage extends StatelessWidget {
         itemPadding: EdgeInsets.all(10.r),
         trailing: const Icon(Icons.add),
         trailingExpanded: const Icon(Icons.remove),
-        children: List.generate(MockInstructorData.instructorList.length, (instructorIndex) {
-          final courseList = MockInstructorData.instructorList[instructorIndex].courseList;
-          final instructorName = MockInstructorData.instructorList[instructorIndex].name;
+        children: List.generate(dataSource.getAllInstructors().length, (instructorIndex) {
+          final courseList = dataSource.getAllInstructors()[instructorIndex].courseList;
+          final instructorName = dataSource.getAllInstructors()[instructorIndex].name;
 
           return ToggleListItem(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipOval(
-                  child: AssetGenImage(MockInstructorData.instructorList[instructorIndex].avatarUrl).image(width: 40.r, height: 40.r),
+                  child: AssetGenImage(dataSource.getAllInstructors()[instructorIndex].avatarUrl).image(width: 40.r, height: 40.r),
                 ),
                 SizedBox(width: 10.r),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      MockInstructorData.instructorList[instructorIndex].rankName, // Fixed the property name.
+                      dataSource.getAllInstructors()[instructorIndex].rankName, // Fixed the property name.
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: const Color.fromRGBO(163, 163, 163, 1),
@@ -51,7 +53,7 @@ class InstructorListPage extends StatelessWidget {
                     ),
                     SizedBox(height: 5.r),
                     Text(
-                      MockInstructorData.instructorList[instructorIndex].name,
+                      dataSource.getAllInstructors()[instructorIndex].name,
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.black,

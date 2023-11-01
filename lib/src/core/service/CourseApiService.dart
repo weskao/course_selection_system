@@ -1,22 +1,25 @@
 import 'package:collection/collection.dart';
-import 'package:course_selection_system/src/data/mock/MockCourseData.dart';
 
 import '../../data/common/api/DataApiResult.dart';
-import '../../data/mock/MockInstructorData.dart';
 import '../../data/model/course/Course.dart';
+import '../../data/model/course/CourseDataSource.dart';
 import '../../data/model/course/Instructor.dart';
 
 class CourseApiService {
+  final CourseDataSource _dataSource;
+
+  CourseApiService(this._dataSource);
+
   // 課程列表 API (Read)
-  DataApiResult<List<Course>> getCourseList(int? instructorId) {
+  DataApiResult<List<Course>> getCourseList({int? instructorId}) {
     if (instructorId == null) {
       return DataApiResult<List<Course>>(
-        data: MockCourseData.allCourseList,
+        data: _dataSource.getAllCourses(),
         code: 200,
       );
     }
 
-    Instructor? instructor = MockInstructorData.instructorList.firstWhereOrNull((instructor) => instructor.id == instructorId);
+    Instructor? instructor = _dataSource.getAllInstructors().firstWhereOrNull((instructor) => instructor.id == instructorId);
 
     if (instructor == null) {
       return DataApiResult<List<Course>>(
@@ -34,14 +37,14 @@ class CourseApiService {
   // 授課講師列表 API (Read)
   DataApiResult<List<Instructor>> getInstructorList() {
     return DataApiResult<List<Instructor>>(
-      data: MockInstructorData.instructorList,
+      data: _dataSource.getAllInstructors(),
       code: 200,
     );
   }
 
   // 授課講師所開課程列表 API (Read)
   DataApiResult<List<Course>> getCoursesByInstructorId(int instructorId) {
-    final instructor = MockInstructorData.instructorList.firstWhereOrNull((instructor) => instructor.id == instructorId);
+    final instructor = _dataSource.getAllInstructors().firstWhereOrNull((instructor) => instructor.id == instructorId);
 
     if (instructor == null) {
       return DataApiResult<List<Course>>(
@@ -58,7 +61,7 @@ class CourseApiService {
 
 // 建立新講師 API (Create)
   DataApiResult<bool> createInstructor(Instructor instructor) {
-    final existingInstructor = MockInstructorData.instructorList.firstWhereOrNull((e) => e.id == instructor.id);
+    final existingInstructor = _dataSource.getAllInstructors().firstWhereOrNull((e) => e.id == instructor.id);
 
     if (existingInstructor != null) {
       return DataApiResult<bool>(
@@ -67,7 +70,7 @@ class CourseApiService {
       );
     }
 
-    MockInstructorData.instructorList.add(instructor);
+    _dataSource.getAllInstructors().add(instructor);
     return DataApiResult<bool>(
       data: true,
       code: 201,
@@ -75,13 +78,13 @@ class CourseApiService {
   }
 
   int get _nextId {
-    if (MockCourseData.allCourseList.isEmpty) return 1;
-    return MockCourseData.allCourseList.map((course) => course.id).reduce((value, element) => value > element ? value : element) + 1;
+    if (_dataSource.getAllCourses().isEmpty) return 1;
+    return _dataSource.getAllCourses().map((course) => course.id).reduce((value, element) => value > element ? value : element) + 1;
   }
 
   // 建立新課程 API (Create)
   DataApiResult<bool> createCourse(Course course) {
-    final existingCourse = MockCourseData.allCourseList.firstWhereOrNull((e) => e.id == course.id);
+    final existingCourse = _dataSource.getAllCourses().firstWhereOrNull((e) => e.id == course.id);
 
     if (existingCourse != null) {
       return DataApiResult<bool>(
@@ -99,7 +102,7 @@ class CourseApiService {
       endTime: course.endTime,
     );
 
-    MockCourseData.allCourseList.add(newCourse);
+    _dataSource.getAllCourses().add(newCourse);
     return DataApiResult<bool>(
       data: true,
       code: 201,
@@ -108,11 +111,11 @@ class CourseApiService {
 
   // 更新課程內容 API (Update)
   DataApiResult<bool> updateCourse(Course updatedCourse) {
-    final int index = MockCourseData.allCourseList.indexWhere((e) => e.id == updatedCourse.id);
+    final int index = _dataSource.getAllCourses().indexWhere((e) => e.id == updatedCourse.id);
     final bool isCourseExist = index != -1;
 
     if (isCourseExist) {
-      MockCourseData.allCourseList[index] = updatedCourse;
+      _dataSource.getAllCourses()[index] = updatedCourse;
       return DataApiResult<bool>(
         data: true,
         code: 200,
@@ -127,11 +130,11 @@ class CourseApiService {
 
   // 刪除課程 API (Delete)
   DataApiResult<bool> deleteCourse(int courseId) {
-    final int initialLength = MockCourseData.allCourseList.length;
+    final int initialLength = _dataSource.getAllCourses().length;
 
-    MockCourseData.allCourseList.removeWhere((course) => course.id == courseId);
+    _dataSource.getAllCourses().removeWhere((course) => course.id == courseId);
 
-    final bool wasRemoved = MockCourseData.allCourseList.length < initialLength;
+    final bool wasRemoved = _dataSource.getAllCourses().length < initialLength;
 
     return DataApiResult<bool>(
       data: wasRemoved,

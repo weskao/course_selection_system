@@ -1,8 +1,48 @@
 import '../common/data/Time.dart';
 import '../model/course/Course.dart';
+import '../model/course/CourseDataSource.dart';
+import '../model/course/Instructor.dart';
 
-class MockCourseData {
-  static final allCourseList = courseList1 + courseList2 + courseList3 + courseList4 + courseList5;
+class MockCourseDataSource implements CourseDataSource {
+  final _allCourseList = courseList1 + courseList2 + courseList3 + courseList4 + courseList5;
+
+  final List<Instructor> _instructorList = [
+    Instructor(
+      id: 7733,
+      name: "Albert Flores",
+      rankLevel: 1,
+      avatarUrl: 'assets/images/default_avatar/default_avatar_2.jpg',
+      courseList: MockCourseDataSource.courseList1,
+    ),
+    Instructor(
+      id: 234,
+      name: "Floyd Miles",
+      rankLevel: 2,
+      avatarUrl: 'assets/images/default_avatar/default_avatar_5.jpg',
+      courseList: MockCourseDataSource.courseList2,
+    ),
+    Instructor(
+      id: 5,
+      name: "Savannah Nguyen",
+      rankLevel: 3,
+      avatarUrl: 'assets/images/default_avatar/default_avatar_8.jpg',
+      courseList: MockCourseDataSource.courseList3,
+    ),
+    Instructor(
+      id: 113,
+      name: "Jenny Wilson",
+      rankLevel: 4,
+      avatarUrl: 'assets/images/default_avatar/default_avatar_15.jpg',
+      courseList: MockCourseDataSource.courseList4,
+    ),
+    Instructor(
+      id: 666,
+      name: "John Miles",
+      rankLevel: 4,
+      avatarUrl: 'assets/images/default_avatar/default_avatar_12.jpg',
+      courseList: MockCourseDataSource.courseList5,
+    ),
+  ];
 
   static final courseList1 = [
     Course(
@@ -122,4 +162,31 @@ class MockCourseData {
       endTime: Time(hour: 17, minute: 0),
     ),
   ];
+
+  @override
+  List<Course> getAllCourses() => _allCourseList;
+
+  @override
+  List<Instructor> getAllInstructors() => _instructorList;
+
+  @override
+  void addCourse(Course course) => _allCourseList.add(course);
+
+  @override
+  void addInstructor(Instructor instructor) => _instructorList.add(instructor);
+
+  @override
+  void updateCourse(Course course) {
+    final index = _allCourseList.indexWhere((e) => e.id == course.id);
+    if (index != -1) {
+      _allCourseList[index] = course;
+    }
+  }
+
+  @override
+  bool removeCourse(int courseId) {
+    final initialLength = _allCourseList.length;
+    _allCourseList.removeWhere((course) => course.id == courseId);
+    return _allCourseList.length < initialLength;
+  }
 }

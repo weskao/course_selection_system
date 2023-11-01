@@ -55,4 +55,20 @@ class Course {
       'endTime': endTime.toJson(),
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    if (other is Course) {
+      return id == other.id;
+    }
+
+    return false;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode;
+  }
 }
