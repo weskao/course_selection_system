@@ -11,25 +11,9 @@ class CourseApiService {
   CourseApiService(this._dataSource);
 
   // 課程列表 API (Read)
-  DataApiResult<List<Course>> getCourseList({int? instructorId}) {
-    if (instructorId == null) {
-      return DataApiResult<List<Course>>(
-        data: _dataSource.getAllCourses(),
-        code: 200,
-      );
-    }
-
-    Instructor? instructor = _dataSource.getAllInstructors().firstWhereOrNull((instructor) => instructor.id == instructorId);
-
-    if (instructor == null) {
-      return DataApiResult<List<Course>>(
-        data: [],
-        code: 404,
-      );
-    }
-
+  DataApiResult<List<Course>> getCourseList() {
     return DataApiResult<List<Course>>(
-      data: instructor.courseList,
+      data: _dataSource.getAllCourses(),
       code: 200,
     );
   }
