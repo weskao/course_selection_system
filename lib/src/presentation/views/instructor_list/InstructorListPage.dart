@@ -1,5 +1,7 @@
 import 'package:course_selection_system/generated/assets.gen.dart';
-import 'package:course_selection_system/src/data/mock/MockCourseDataSource.dart';
+import 'package:course_selection_system/src/data/mock/CourseDataSource.dart';
+import 'package:course_selection_system/src/data/mock/MockCourse.dart';
+import 'package:course_selection_system/src/data/mock/MockInstructor.dart';
 import 'package:course_selection_system/src/presentation/views/instructor_list/widget/CourseListTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +15,7 @@ class InstructorListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dataSource = MockCourseDataSource();
+    final dataSource = CourseDataSource(allCourseList: MockCourse.allCourseList, instructorList: MockInstructor.instructorList);
 
     return PrimaryPage(
       title: "講師清單",

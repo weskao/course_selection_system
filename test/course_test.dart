@@ -1,23 +1,20 @@
 import 'package:course_selection_system/src/core/extensions/list_extension.dart';
 import 'package:course_selection_system/src/core/service/CourseApiService.dart';
 import 'package:course_selection_system/src/data/common/data/Time.dart';
-import 'package:course_selection_system/src/data/mock/MockCourseDataSource.dart';
+import 'package:course_selection_system/src/data/mock/CourseDataSource.dart';
+import 'package:course_selection_system/src/data/mock/MockCourse.dart';
+import 'package:course_selection_system/src/data/model/course/BaseCourseDataSource.dart';
 import 'package:course_selection_system/src/data/model/course/Course.dart';
+import 'package:course_selection_system/src/data/model/course/Instructor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final dataSource = MockCourseDataSource();
+  late BaseCourseDataSource courseDataSource;
   late CourseApiService apiService;
-
-  setUp(() {
-    apiService = CourseApiService(dataSource);
-  });
 
   group('getCoursesByInstructorId', () {
     test('should return course list when instructorId exist', () {
-      const existedInstructorId = 5;
-      final result = apiService.getCoursesByInstructorId(existedInstructorId);
-      final List<Course> allCourseList = [
+      final allCourseList = [
         Course(
           id: 6,
           name: '進階英文',
@@ -28,24 +25,56 @@ void main() {
           instructorId: 5,
         ),
         Course(
-          id: 7,
+          id: 1,
           name: '基礎程式設計',
           description: "基礎程式設計課程",
           dayOfWeek: 2,
-          startTime: Time(hour: 9, minute: 0),
+          startTime: Time(hour: 10, minute: 0),
           endTime: Time(hour: 12, minute: 0),
-          instructorId: 113,
+          instructorId: 7733,
         ),
         Course(
-          id: 8,
-          name: '進階程式設計',
-          description: "進階程式設計課程",
+          id: 2,
+          name: '人工智慧總整與實作',
+          description: "人工智慧總整與實作課程",
           dayOfWeek: 4,
-          startTime: Time(hour: 9, minute: 30),
-          endTime: Time(hour: 12, minute: 30),
-          instructorId: 113,
+          startTime: Time(hour: 14, minute: 0),
+          endTime: Time(hour: 16, minute: 0),
+          instructorId: 7733,
+        ),
+        Course(
+          id: 3,
+          name: '訊號與系統',
+          description: "訊號與系統課程",
+          dayOfWeek: 5,
+          startTime: Time(hour: 10, minute: 0),
+          endTime: Time(hour: 12, minute: 0),
+          instructorId: 7733,
         ),
       ];
+      final instructorList = [
+        Instructor(
+          id: 234,
+          name: "Floyd Miles",
+          rankLevel: 2,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_5.jpg',
+          courseList: MockCourse.courseList2,
+        ),
+        Instructor(
+          id: 5,
+          name: "Savannah Nguyen",
+          rankLevel: 3,
+          avatarUrl: 'assets/images/default_avatar/default_avatar_8.jpg',
+          courseList: MockCourse.courseList3,
+        ),
+      ];
+
+      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
+      apiService = CourseApiService(courseDataSource);
+
+      const existedInstructorId = 5;
+      courseDataSource = CourseDataSource(allCourseList: allCourseList, instructorList: instructorList);
+      final result = apiService.getCoursesByInstructorId(existedInstructorId);
 
       final expectedInstructorCourseList = [
         Course(

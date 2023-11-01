@@ -1,7 +1,7 @@
 import 'Course.dart';
 import 'Instructor.dart';
 
-abstract class CourseDataSource {
+abstract class BaseCourseDataSource {
   List<Course> getAllCourses();
   List<Instructor> getAllInstructors();
   void addCourse(Course course);

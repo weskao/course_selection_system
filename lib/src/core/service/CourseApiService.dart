@@ -1,12 +1,12 @@
 import 'package:collection/collection.dart';
 
 import '../../data/common/api/DataApiResult.dart';
+import '../../data/model/course/BaseCourseDataSource.dart';
 import '../../data/model/course/Course.dart';
-import '../../data/model/course/CourseDataSource.dart';
 import '../../data/model/course/Instructor.dart';
 
 class CourseApiService {
-  final CourseDataSource _dataSource;
+  final BaseCourseDataSource _dataSource;
 
   CourseApiService(this._dataSource);
 
