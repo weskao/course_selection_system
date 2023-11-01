@@ -42,7 +42,7 @@ class CourseApiService {
   }
 
   // 授課講師所開課程列表 API (Read)
-  DataApiResult<List<Course>> getCoursesByInstructor(int instructorId) {
+  DataApiResult<List<Course>> getCoursesByInstructorId(int instructorId) {
     var instructor = MockInstructorData.instructorList.firstWhereOrNull((instructor) => instructor.id == instructorId);
 
     if (instructor == null) {
