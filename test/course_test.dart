@@ -364,9 +364,10 @@ void main() {
     });
   });
 
-  group('updateCourse', () {
-    test('should return 200 and update target course data when course id exist', () {
+  group('deleteCourse', () {
+    test('should return 200 and delete target course data when wanted to deleted course id exist', () {
       const existedCourseId = 6;
+      const int toDeletedCourseId = existedCourseId;
 
       final allCourseList = [
         Course(
@@ -406,18 +407,7 @@ void main() {
         ),
       ];
 
-      final Course toUpdatedCourse = Course(
-        id: existedCourseId,
-        name: '進階英文2',
-        description: "進階英文課程2",
-        dayOfWeek: 2,
-        startTime: Time(hour: 12, minute: 0),
-        endTime: Time(hour: 14, minute: 0),
-        instructorId: 5,
-      );
-
       final List<Course> expectedAllCourseList = [
-        toUpdatedCourse,
         Course(
           id: 3,
           name: '訊號與系統',
@@ -431,7 +421,7 @@ void main() {
 
       givenCourseDataSource(allCourseList, instructorList);
       initApiService(courseDataSource);
-      requestUpdateCourse(toUpdatedCourse);
+      requestDeleteCourse(toDeletedCourseId);
       expectedBoolResultShouldBe(boolResult, 200, isTrue);
       requestGetAllCourses();
       expectedCourseResultShouldBe(courseListResult, 200, expectedAllCourseList);
@@ -441,6 +431,10 @@ void main() {
 
 void requestUpdateCourse(Course toUpdatedCourse) {
   boolResult = apiService.updateCourse(toUpdatedCourse);
+}
+
+void requestDeleteCourse(int courseId) {
+  boolResult = apiService.deleteCourse(courseId);
 }
 
 void requestGetCoursesByInstructorIdApi(int instructorId) {
