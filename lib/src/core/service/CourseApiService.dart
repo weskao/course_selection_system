@@ -58,11 +58,20 @@ class CourseApiService {
     );
   }
 
-  // 建立新講師 API (Create)
-  DataApiResult<Instructor> createInstructor(Instructor instructor) {
+// 建立新講師 API (Create)
+  DataApiResult<bool> createInstructor(Instructor instructor) {
+    var existingInstructor = MockInstructorData.instructorList.firstWhereOrNull((e) => e.id == instructor.id);
+
+    if (existingInstructor != null) {
+      return DataApiResult<bool>(
+        data: false,
+        code: 409,
+      );
+    }
+
     MockInstructorData.instructorList.add(instructor);
-    return DataApiResult<Instructor>(
-      data: instructor,
+    return DataApiResult<bool>(
+      data: true,
       code: 201,
     );
   }
