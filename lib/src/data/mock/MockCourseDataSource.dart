@@ -52,6 +52,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 2,
       startTime: Time(hour: 10, minute: 0),
       endTime: Time(hour: 12, minute: 0),
+      instructorId: 7733,
     ),
     Course(
       id: 2,
@@ -60,6 +61,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 4,
       startTime: Time(hour: 14, minute: 0),
       endTime: Time(hour: 16, minute: 0),
+      instructorId: 7733,
     ),
     Course(
       id: 3,
@@ -68,6 +70,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 5,
       startTime: Time(hour: 10, minute: 0),
       endTime: Time(hour: 12, minute: 0),
+      instructorId: 7733,
     ),
   ];
 
@@ -79,6 +82,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 3,
       startTime: Time(hour: 19, minute: 0),
       endTime: Time(hour: 21, minute: 0),
+      instructorId: 234,
     ),
     Course(
       id: 5,
@@ -87,6 +91,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 3,
       startTime: Time(hour: 8, minute: 0),
       endTime: Time(hour: 10, minute: 0),
+      instructorId: 234,
     ),
   ];
 
@@ -98,6 +103,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 3,
       startTime: Time(hour: 15, minute: 30),
       endTime: Time(hour: 18, minute: 30),
+      instructorId: 5,
     ),
   ];
 
@@ -109,6 +115,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 2,
       startTime: Time(hour: 9, minute: 0),
       endTime: Time(hour: 12, minute: 0),
+      instructorId: 113,
     ),
     Course(
       id: 8,
@@ -117,6 +124,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 4,
       startTime: Time(hour: 9, minute: 30),
       endTime: Time(hour: 12, minute: 30),
+      instructorId: 113,
     ),
   ];
 
@@ -128,6 +136,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 1,
       startTime: Time(hour: 16, minute: 0),
       endTime: Time(hour: 18, minute: 0),
+      instructorId: 666,
     ),
     Course(
       id: 10,
@@ -136,6 +145,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 3,
       startTime: Time(hour: 11, minute: 0),
       endTime: Time(hour: 12, minute: 0),
+      instructorId: 666,
     ),
     Course(
       id: 11,
@@ -144,6 +154,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 1,
       startTime: Time(hour: 8, minute: 30),
       endTime: Time(hour: 13, minute: 30),
+      instructorId: 666,
     ),
     Course(
       id: 12,
@@ -152,6 +163,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 4,
       startTime: Time(hour: 14, minute: 0),
       endTime: Time(hour: 16, minute: 0),
+      instructorId: 666,
     ),
     Course(
       id: 13,
@@ -160,6 +172,7 @@ class MockCourseDataSource implements CourseDataSource {
       dayOfWeek: 2,
       startTime: Time(hour: 15, minute: 0),
       endTime: Time(hour: 17, minute: 0),
+      instructorId: 666,
     ),
   ];
 
