@@ -124,3 +124,6 @@ app.*.symbols
 
 # sonarlint
 .idea/sonarlint/*
+
+# FVM Version Cache
+.fvm/
